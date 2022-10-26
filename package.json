@@ -1,0 +1,25 @@
+{
+    "name": "lilypond-language",
+    "displayName": "Lilypond Language",
+    "description": "Syntax highlighting for GNU LilyPond",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.68.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "ly",
+            "aliases": ["LilyPond", "ly"],
+            "extensions": [".ly",".ily"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "ly",
+            "scopeName": "source.lilypond",
+            "path": "./syntaxes/ly.tmLanguage.json"
+        }]
+    }
+}

@@ -1,0 +1,833 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "LilyPond",
+  "patterns": [
+		{
+			"include": "#drummode"
+		},
+		{
+			"include": "#figbassmode"
+		},
+		{
+			"include": "#internals"
+		},
+		{
+			"include": "#lyricsmode"
+		},
+		{
+			"include": "#markupmode"
+		},
+    {
+			"include": "#notemode"
+    },
+    {
+			"include": "#notemode-explicit"
+    },
+		{
+			"include": "#notenames"
+		},
+    {
+      "include": "#schememode"
+    }
+  ],
+  "repository": {
+		"drummode": {
+			"patterns": [
+				{
+					"begin": "([-_^](\\s*))?(((\\\\)drums)|((\\\\)drummode))\\s*({)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"4": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"6": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"7": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.drummode",
+					"patterns": [
+						{
+							"include": "#notedrum"
+						},
+						{
+							"include": "#drummode-percussion_notes"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#lyricsmode"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#figbassmode"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				},
+				{
+					"begin": "({)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.drummode",
+					"patterns": [
+						{
+							"include": "#notedrum"
+						},
+						{
+							"include": "#drummode-percussion_notes"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#lyricsmode"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#figbassmode"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				}
+			]
+		},
+		"drummode-percussion_notes": {
+			"patterns": [
+				{
+					"match": "\\b((((acousticbassdrum|acousticsnare|agh|agl|bassdrum|bd|bda|boh|bohm|boho|bol|bolm|bolo|cab|cabasa|cb|cgh|cghm|cgho|cgl|cglm|cglo|chinesecymbal|cl|claves|closedhihat|cowbell|crashcymbal|crashcymbala|crashcymbalb|cuim|cuio|cymc|cymca|cymcb|cymch|cymr|cymra|cymrb|cyms|da|db|dc|dd|de|electricsnare|fivedown|fiveup|fourdown|fourup|gui|guil|guiro|guis|halfopenhihat|handclap|hc|hh|hhc|hhho|hho|hhp|hiagogo|hibongo|hiconga|highfloortom|hightom|hihat|himidtom|hisidestick|hitimbale|hiwoodblock|loagogo|lobongo|loconga|longguiro|longwhistle|losidestick|lotimbale|lowfloortom|lowmidtom|lowoodblock|lowtom|mar|maracas|mutecuica|mutehibongo|mutehiconga|mutelobongo|muteloconga|mutetriangle|onedown|oneup|opencuica|openhibongo|openhiconga|openhihat|openlobongo|openloconga|opentriangle|pedalhihat|rb|ridebell|ridecymbal|ridecymbala|ridecymbalb|shortguiro|shortwhistle|sidestick|sn|sna|snare|sne|splashcymbal|ss|ssh|ssl|tamb|tambourine|tamtam|threedown|threeup|timh|timl|tomfh|tomfl|tomh|toml|tommh|tomml|tri|triangle|trim|trio|tt|twodown|twoup|ua|ub|uc|ud|ue|vibraslap|vibs|wbh|wbl|whl|whs))|s|r|R|q)(?![A-Za-z])(\\s*(128|64|32|16|8|4|2|1|\\\\breve|\\\\longa|\\\\maxima)(\\s*[.]\\s*)*((\\s*\\*\\s*\\d+(\\/\\d+)?)+)?)?)(?!(acousticbassdrum|acousticsnare|agh|agl|bassdrum|bd|bda|boh|bohm|boho|bol|bolm|bolo|cab|cabasa|cb|cgh|cghm|cgho|cgl|cglm|cglo|chinesecymbal|cl|claves|closedhihat|cowbell|crashcymbal|crashcymbala|crashcymbalb|cuim|cuio|cymc|cymca|cymcb|cymch|cymr|cymra|cymrb|cyms|da|db|dc|dd|de|electricsnare|fivedown|fiveup|fourdown|fourup|gui|guil|guiro|guis|halfopenhihat|handclap|hc|hh|hhc|hhho|hho|hhp|hiagogo|hibongo|hiconga|highfloortom|hightom|hihat|himidtom|hisidestick|hitimbale|hiwoodblock|loagogo|lobongo|loconga|longguiro|longwhistle|losidestick|lotimbale|lowfloortom|lowmidtom|lowoodblock|lowtom|mar|maracas|mutecuica|mutehibongo|mutehiconga|mutelobongo|muteloconga|mutetriangle|onedown|oneup|opencuica|openhibongo|openhiconga|openhihat|openlobongo|openloconga|opentriangle|pedalhihat|rb|ridebell|ridecymbal|ridecymbala|ridecymbalb|shortguiro|shortwhistle|sidestick|sn|sna|snare|sne|splashcymbal|ss|ssh|ssl|tamb|tambourine|tamtam|threedown|threeup|timh|timl|tomfh|tomfl|tomh|toml|tommh|tomml|tri|triangle|trim|trio|tt|twodown|twoup|ua|ub|uc|ud|ue|vibraslap|vibs|wbh|wbl|whl|whs))",
+					"name": "keyword.percussionnote.lilypond"
+				}
+			]
+		},
+		"figbassmode": {
+			"patterns": [
+				{
+					"begin": "({)|([-_^](\\s*))?(((\\\\figures\\s*)({))|((\\\\figuremode\\s*)({)))",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						},
+						"2": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"6": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"7": {
+							"name": "entity.other.lilypond"
+						},
+						"9": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"10": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.figbassmode",
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#figuregroup"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				}
+			]
+		},
+		"figuregroup": {
+			"patterns": [
+				{
+					"begin": "(<)",
+					"beginCaptures": {
+						"1": {
+							"name": "constant.numeric.fbgroupopen.lilypond"
+						}
+					},
+					"end": "(>)(\\s*(128|64|32|16|8|4|2|1|\\breve|\\longa|\\maxima)(\\s*[.]\\s*)*((\\s*\\*\\s*\\d+(\\/\\d+)?)+)?)?",
+					"endCaptures": {
+						"1": {
+							"name": "constant.numeric.fbgroupclose.lilypond"
+						},
+						"2": {
+							"name": "keyword.note.duration.lilypond"
+						}
+					},
+					"name": "meta.lilypond.figuregroup",
+					"patterns": [
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#figuregroup-group"
+						},
+						{
+							"include": "#figuregroup-figure"
+						},
+						{
+							"include": "#figuregroup-macro"
+						}
+					]
+				},
+				{
+					"content": "Rests and repetitions in figuremode",
+					"match": "(r|q|s)(\\s*(128|64|32|16|8|4|2|1|\\breve|\\longa|\\maxima)(\\s*[.]\\s*)*((\\s*\\*\\s*\\d+(\\/\\d+)?)+)?)?",
+					"captures": {
+						"1": {
+							"name": "keyword.note.name.lilypond"
+						},
+						"2": {
+							"name": "keyword.note.duration.lilypond"
+						}
+					}
+				},
+				{
+					"include": "#schememode"
+				}
+			]
+		},
+		"figuregroup-figure": {
+			"patterns": [
+				{
+					"content": "Figured bass figure, optinally followed by an accidental and explicit line delimiter",
+					"match": "(\\d+|_)(!|\\+\\+|--|\\+|-|/|\\\\\\+|\\\\\\\\)?(\\\\!)?",
+					"captures": {
+						"1": {
+							"name": "keyword.fbfigure.lilypond"
+						},
+						"2": {
+							"name": "keyword.fbaccidental.lilypond"
+						},
+						"3": {
+							"name": "keyword.fbaccidental.lilypond"
+						}
+					}
+				}
+			]
+		},
+		"figuregroup-group": {
+			"patterns": [
+				{
+					"content": "Vertical brackets grouping figured bass figures",
+					"match": "(\\[)|(\\])",
+					"name": "keyword.operator.figuregroup.brackets"
+				}
+			]
+		},
+		"figuregroup-macro": {
+			"patterns": [
+				{
+					"content": "Macros used instead of figures",
+					"match": "\\\\(t|tllur|l)(?![a-zA-Z])",
+					"name": "keyword.fbmacro.lilypond"
+				}
+			]
+		},
+		"internals": {
+      "patterns": [
+        {
+          "begin": "%{",
+          "end": "%}",
+          "name": "comment.block.lilypond"
+        },
+        {
+          "content": "LilyPond inline comment",
+          "match": "%[^{].*",
+          "name": "comment.line.lilypond"
+        },
+        {
+          "begin": "(?<!\\\\)(([_^-]\\s*)?\\\")",
+          "end": "(?<!\\\\)(\\\")",
+          "name": "string.lilypond"
+        },
+        {
+          "content": "LilyPond keyword",
+          "match": "([-_^](\\s*))?\\\\(xNotesOn|xNotesOff|xNote|wordwrap-string-internal|wordwrap-string|wordwrap-lines|wordwrap-internal|wordwrap-field|wordwrap|withMusicProperty|with-url|with-link|with-dimensions|with-color|with|whiteout|whiteTriangleMarkup|walkerHeadsMinor|walkerHeads|vspace|void|voiceTwoStyle|voiceTwo|voiceThreeStyle|voiceThree|voiceOneStyle|voiceOne|voiceNeutralStyle|voiceFourStyle|voiceFour|vocalName|virgula|virga|verylongfermata|versus|version|verbatim-file|vcenter|varcoda|upright|upprall|upmordent|upbow|up|unset|unit|unfoldRepeats|underline|unaCorda|unHideNotes|typewriter|type|tweak|turn|tupletUp|tupletNeutral|tupletDown|tuplet|trill|haydnturn|triangle|treCorde|transposition|transposedCueDuring|transpose|transparent|translate-scaled|translate|topLevelAlignment|tocTitleMarkup|tocItemWithDotsMarkup|tocItemMarkup|tocItem|tiny|timing|times|timeSignatureSettings|timeSignatureFraction|time|tildeSymbol|tied-lyric|tieWaitForNote|tieUp|tieSolid|tieNeutral|tieHalfSolid|tieHalfDashed|tieDown|tieDotted|tieDashed|tieDashPattern|thumb|textSpannerUp|textSpannerNeutral|textSpannerDown|textLengthOn|textLengthOff|text|tenuto|tempoWholesPerMinute|tempo|teeny|tag|table-of-contents|tablatureFormat|tabStaffLineLayoutFunction|tabFullNotation|systemStartDelimiter|sustainOn|sustainOff|super|subdivideBeams|sub|styledNoteHeads|strut|stropha|strokeFingerOrientations|stringTunings|stringOneTopmost|stringNumberOrientations|stopped|stopTrillSpan|stopTextSpan|stopStaff|stopSlashedGraceMusic|stopGroup|stopGraceSlur|stopGraceMusic|stopAppoggiaturaMusic|stopAcciaccaturaMusic|stop|stencil|stemUp|stemNeutral|stemDown|startTrillSpan|startTextSpan|startStaff|startSlashedGraceMusic|startRepeatType|startGroup|startGraceSlur|startGraceMusic|startAppoggiaturaMusic|startAcciaccaturaMusic|start|staccato|staccatissimo|squashedPosition|spp|spacingTweaks|sp|southernHarmonyHeadsMinor|southernHarmonyHeads|sostenutoOn|sostenutoOff|soloText|soloIIText|snappizzicato|smaller|smallCaps|small|slurUp|slurSolid|slurNeutral|slurHalfSolid|slurHalfDashed|slurDown|slurDotted|slurDashed|slurDashPattern|slashedGrace|slashed-digit|slashChordSeparator|skipTypesetting|skip|simultaneous|simple|signumcongruentiae|showStaffSwitch|showSplitTiedTabNotes|shortfermata|shortVocalName|shortInstrumentName|shiftOnnn|shiftOnn|shiftOn|shiftOff|shiftDurations|sharp|shape|sfz|sfp|sff|sf|settingsFrom|setDefaultDurationToQuarter|set|sesquisharp|sesquiflat|sequential|semisharp|semiflat|semicirculus|semiGermanChords|segno|searchForVoice|scriptDefinitions|score|scaleDurations|scale|sans|sacredHarpHeadsMinor|sacredHarpHeads|rtoe|rounded-box|rotate|roman|rightHandFinger|right-column|right-brace|right-align|right|rheel|rfz|revertTimeSignatureSettings|revert|reverseturn|retrograde|restrainOpenStrings|rest|responsum|resetRelativeOctave|replace|repeatTie|repeatCountVisibility|repeat|removeWithTag|remove|relative|rehearsalMark|raise|quotedEventTypes|quotedCueEventTypes|quoteDuring|quilisma|put-adjacent|pushToTag|pt|property-recursive|printPartCombineTexts|printKeyCancellation|predefinedFretboardsOn|predefinedFretboardsOff|predefinedDiagramTable|prallup|prallprall|prallmordent|pralldown|prall|ppppp|pppp|ppp|pp|powerChords|powerChordSymbol|powerChordExceptions|postscript|portato|pointAndClickTypes|pointAndClickOn|pointAndClickOff|pitchedTrill|pipeSymbol|phrygian|phrasingSlurUp|phrasingSlurSolid|phrasingSlurNeutral|phrasingSlurHalfSolid|phrasingSlurHalfDashed|phrasingSlurDown|phrasingSlurDotted|phrasingSlurDashed|phrasingSlurDashPattern|pes|pedalUnaCordaStyle|pedalUnaCordaStrings|pedalSustainStyle|pedalSustainStrings|pedalSostenutoStyle|pedalSostenutoStrings|pattern|path|partialJazzMusic|partialJazzExceptions|partial|partCombineUp|partCombineUnisono|partCombineSoloII|partCombineSoloI|partCombineForce|partCombineDown|partCombineChords|partCombineAutomatic|partCombineApart|partCombine|partCombineTextsOnNote|partCombineListener|parenthesize|parenthesisOpenSymbol|parenthesisCloseSymbol|parallelMusic|paper|palmMuteOn|palmMuteOff|palmMute|pageTurn|pageBreak|page-ref|page-link|pad-x|pad-to-box|pad-markup|pad-around|p|omit|overrideTimeSignatureSettings|overrideProperty|override-lines|override|ottava|oriscus|open|oneVoice|once|on-the-fly|octaveCheck|numericTimeSignature|number|null|noteToFretFunction|note-by-number|note|normalsize|normal-text|normal-size-super|normal-size-sub|noPageTurn|noPageBreak|noChordSymbol|noBreak|noBeam|newSpacingSection|new|neumeDemoLayout|natural|name|musicglyph|musicMap|mp|mordent|modalTranspose|modalInversion|mm|mixolydian|minorChordModifier|minor|midiInstrument|midiChannelMapping|midi|middleCPosition|middleCClefPosition|mf|metronomeMarkFormatter|mergeDifferentlyHeadedOn|mergeDifferentlyHeadedOff|mergeDifferentlyDottedOn|mergeDifferentlyDottedOff|melismaEnd|melismaBusyProperties|melisma|medium|measureLength|maxima|markletter|markalphabet|markFormatter|markLengthOn|markLengthOff|mark|markLengthOn|markLengthOff|marcato|makeClusters|majorSevenSymbol|major|maininput|magnify|lyricMelismaAlignment|lydian|ltoe|lower|lookup|longfermata|longa|locrian|localKeySignature|lineprall|linea|line|ligature|lheel|left-column|left-brace|left-align|left|layout|larger|large|languageSaveAndChange|languageRestore|language|laissezVibrer|label|killCues|keyAlterationOrder|key|keepWithTag|keepAliveInterfaces|justify-string|justify-field|justify|justified-lines|italic|italianChords|ionian|inversion|interscoreline|instrumentTransposition|instrumentSwitch|instrumentName|instrumentEqualizer|indent|include|inclinatum|inStaffSegno|in|improvisationOn|improvisationOff|implicitTimeSignatureVisibility|ij|iij|ignoreFiguredBassRest|ignoreBarChecks|ignatzekExceptions|ignatzekExceptionMusic|ictus|huge|hspace|highStringOne|hideStaffSwitch|hideSplitTiedTabNotes|hideNotes|hide|header|hcenter-in|hbracket|harp-pedal|harmonicsOn|harmonicsOff|harmonicNote|harmonicByRatio|harmonicByFret|harmonicAccidentals|harmonic|handleNegativeFrets|halign|halfopen|grobdescriptions|graceSettings|grace|glissando|germanChords|general-align|fz|funkHeadsMinor|funkHeads|fullJazzExceptions|fromproperty|fret-diagram-verbose|fret-diagram-terse|fret-diagram|frenchChords|fraction|fp|footnote|fontsize|fontSize|fontCaps|flexa|flat|flageolet|firstClef|fingeringOrientations|finger|finalis|filled-box|fill-with-pattern|fill-line|figuredBassFormatter|fffff|ffff|fff|ff|fermata|featherDurations|f|eyeglasses|extraNatural|explicitKeySignatureVisibility|explicitCueClefVisibility|explicitClefVisibility|expandFullBarRests|eventChords|espressivo|escapedSmallerSymbol|escapedParenthesisOpenSymbol|escapedParenthesisCloseSymbol|escapedExclamationSymbol|escapedBiggerSymbol|epsfile|episemInitium|episemFinis|endincipit|enddim|enddecresc|enddecr|endcresc|endcr|endSpanners|endRepeatType|easyHeadsOn|easyHeadsOff|dynamicUp|dynamicNeutral|dynamicDown|dynamicAbsoluteVolumeFunction|dynamic|draw-dashed-line|draw-dotted-line|drumStyleTable|drumPitchTable|draw-line|draw-hline|draw-circle|downprall|downmordent|downbow|down|doublesharp|doubleflat|doubleRepeatType|dotsUp|dotsNeutral|dotsDown|dorian|divisioMinima|divisioMaxima|divisioMaior|displayMusic|displayLilyMusic|dir-column|dimTextDim|dimTextDecresc|dimTextDecr|dimHairpin|dim|description|descendens|deprecatedenddim|deprecatedendcresc|deprecateddim|deprecatedcresc|denies|deminutum|defaultchild|defaultTimeSignature|defaultNoteHeads|defaultBarType|default|decrescendoSpanner|decresc|decr|deadNotesOn|deadNotesOff|deadNote|dashUnderscore|dashPlus|dashLarger|dashHat|dashDot|dashDash|dashBar|cueDuringWithClef|cueDuring|cueClefUnset|cueClef|crossStaff|crescendoSpanner|crescTextCresc|crescHairpin|cresc|createSpacing|cr|context|consists|concat|compressEmptyMeasures|compoundMeter|command-name|combine|column-lines|column|coda|cm|clefPosition|clefOctavation|clefGlyph|clef|circulus|circle|chords|chordmodifiers|chordmode|chordRootNamer|chordPrefixSpacer|chordNoteNamer|chordNameSeparator|chordNameLowercaseMinor|chordNameFunction|chordNameExceptionsPartial|chordNameExceptionsFull|chordNameExceptions|char|change|center-column|center-align|center|cavum|caps|caesura|cadenzaOn|cadenzaOff|breve|breathe|breakDynamicSpan|break|bracketOpenSymbol|bracketCloseSymbol|bracket|box|bookpart|bookOutputSuffix|bookOutputName|book|bold|blackTriangleMarkup|bigger|bendAfter|beatStructure|beamHalfMeasure|beamExceptions|beam|bassStaffProperties|bassFigureStaffAlignmentUp|bassFigureStaffAlignmentNeutral|bassFigureStaffAlignmentDown|bassFigureExtendersOn|bassFigureExtendersOff|baseMoment|barNumberVisibility|barNumberFormatter|barNumberCheck|barCheckSynchronize|barAlways|bar|balloonText|balloonLengthOn|balloonLengthOff|balloonGrobText|backslashed-digit|automaticBars|absolute|autochange|autoCautionaries|autoBeaming|autoBeamOn|autoBeamOff|autoBeamCheck|autoAccidentals|auto-footnote|augmentum|auctum|assertBeamSlope|assertBeamQuant|ascendens|arrow-head|arpeggioParenthesisDashed|arpeggioParenthesis|arpeggioNormal|arpeggioBracket|arpeggioArrowUp|arpeggioArrowDown|arpeggio|appoggiatura|applyOutput|applyMusic|applyContext|appendToTag|alternative|alterBroken|allowPageTurn|alias|aikenHeadsMinor|aikenHeads|afterGraceFraction|afterGrace|aeolian|additionalPitchPrefix|addQuote|addInstrumentDefinition|accidentalStyle|acciaccatura|accepts|accentus|accent|abs-fontsize|aDueText|RemoveEmptyTabStaffContext|RemoveEmptyStaffContext|RemoveEmptyRhythmicStaffContext|RemoveEmptyDrumStaffContext|IJ|IIJ|single|EventClasses|C|B|AncientRemoveEmptyStaffContext|A|n)(?![a-zA-Z])",
+          "name": "entity.name.class.keyword.lilypond"
+        },
+        {
+          "content": "Lilypond reserved word",
+          "match": "\\b(NullVoice|spacing|signature|routine|notes|handler|corrected|beams|arpeggios|Volta_engraver|Voice|Vertical_align_engraver|Vaticana_ligature_engraver|VaticanaVoice|VaticanaStaff|Tweak_engraver|Tuplet_engraver|Trill_spanner_engraver|Timing_translator|Time_signature_performer|Time_signature_engraver|Tie_performer|Tie_engraver|Text_spanner_engraver|Text_engraver|Tempo_performer|Tab_tie_follow_engraver|Tab_staff_symbol_engraver|Tab_note_heads_engraver|TabVoice|TabStaff|System_start_delimiter_engraver|Stem_engraver|Stanza_number_engraver|Stanza_number_align_engraver|Staff_symbol_engraver|Staff_performer|Staff_collecting_engraver|StaffGroup|Staff|Spanner_break_forbid_engraver|Span_bar_stub_engraver|Span_bar_engraver|Span_arpeggio_engraver|Spacing_engraver|Slur_performer|Slur_engraver|Slash_repeat_engraver|Separating_line_group_engraver|Script_row_engraver|Script_engraver|Script_column_engraver|Score|Rhythmic_column_engraver|RhythmicStaff|Rest_engraver|Rest_collision_engraver|Repeat_tie_engraver|Repeat_acknowledge_engraver|Pure_from_neighbor_engraver|Pitched_trill_engraver|Pitch_squash_engraver|Piano_pedal_performer|Piano_pedal_engraver|Piano_pedal_align_engraver|PianoStaff|Phrasing_slur_engraver|PetrucciVoice|PetrucciStaff|Percent_repeat_engraver|Part_combine_engraver|Parenthesis_engraver|Paper_column_engraver|Output_property_engraver|Ottava_spanner_engraver|Note_spacing_engraver|Note_performer|Note_name_engraver|Note_heads_engraver|Note_head_line_engraver|NoteNames|New_fingering_engraver|New_dynamic_engraver|Multi_measure_rest_engraver|Metronome_mark_engraver|Mensural_ligature_engraver|MensuralVoice|MensuralStaff|Mark_engraver|Lyrics|Lyric_performer|Lyric_engraver|Ligature_bracket_engraver|Ledger_line_engraver|Laissez_vibrer_engraver|KievanVoice|KievanStaff|Key_performer|Key_engraver|Keep_alive_together_engraver|Instrument_switch_engraver|Instrument_name_engraver|Hyphen_engraver|Hara_kiri_engraver|Grob_pq_engraver|GregorianTranscriptionVoice|GregorianTranscriptionStaff|GrandStaff|Grace_spacing_engraver|Grace_engraver|Grace_beam_engraver|Global|Glissando_engraver|Fretboard_engraver|FretBoards|Forbid_line_break_engraver|Footnote_engraver|Font_size_engraver|Fingering_engraver|Figured_bass_position_engraver|Figured_bass_engraver|FiguredBass|Extender_engraver|Episema_engraver|Dynamics|Dynamic_performer|Dynamic_align_engraver|Drum_notes_engraver|Drum_note_performer|DrumVoice|DrumStaff|Double_percent_repeat_engraver|Dots_engraver|Dot_column_engraver|Devnull|Default_bar_line_engraver|Custos_engraver|Cue_clef_engraver|CueVoice|Control_track_performer|Concurrent_hairpin_engraver|Collision_engraver|Cluster_spanner_engraver|Clef_engraver|Chord_tremolo_engraver|Chord_name_engraver|ChordNames|ChordNameVoice|ChoirStaff|Breathing_sign_engraver|Break_align_engraver|Bend_engraver|Beam_performer|Beam_engraver|Beam_collision_engraver|Bar_number_engraver|Bar_engraver|Axis_group_engraver|Auto_beam_engraver|Arpeggio_engraver|Accidental_engraver|Score|volta|unfold|percent|tremolo)\\b",
+          "name": "entity.name.function.reserved.lilypond"
+        },
+        {
+          "content": "LilyPond tempo or tempo range",
+          "match": "(128|64|32|16|8|4|2|1|\\\\breve|\\\\longa|\\\\maxima)(\\s*[.]\\s*)*=\\s*\\d+(\\s*~\\s*\\d+)?",
+          "name": "storage.type.tempo.lilypond"
+        },
+        {
+          "content": "LilyPond time signature",
+          "match": "\\d+\\/\\d+",
+          "name": "storage.type.timesig.lilypond"
+        },
+        {
+          "content": "LilyPond number with optional augmentation dots",
+          "match": "([-_+^.\\\\](\\s*))?\\d+(\\s*[.]\\s*)*((\\s*\\*\\s*\\d+(\\/\\d+)?)+)?",
+          "name": "storage.type.number.lilypond"
+        },
+        {
+          "content": "LilyPond custom keywords",
+          "match": "([-_^](\\s*))?\\\\(setGroupDistance|setStaffDistance|smallGroupDistance|normalGroupDistance|smallStaffDistance|incipit|incipitSoprano|incipitAlto|incipitTenore|transposedName|transposedNameShort|transposedTimp|transposedTimpShort|insertEmptyPage|part|section|subsection|addTocEntry|addTocLabel|remark|arco|bassi|colOrg|dolce|org|pizz|senzaOrg|solo|tasto|tutti|unisono|vlc|critnote|mvTr|mvTrh|mvTrr|tempoMarkup|twofourtime|twotwotime|bp|extraNat|hairpinDashed|hairpinSolid|hideTn|kneeBeam|noKneeBeam|markDaCapo|mvDl|mvDll|parOn|parOff|sbOn|sbOff|scriptOut|x|pa|pao|pd|rh|lh|bo|bc|dynScript|dynScriptPrefix)(?![a-zA-Z])",
+          "name": "keyword.custom.lilypond"
+        },
+        {
+          "content": "LilyPond custom keywords (editorial)",
+          "match": "([-_^](\\s*))?\\\\(remarkE|arcoE|bassiE|colOrgE|dolceE|orgE|pizzE|senzaOrgE|soloE|tastoE|tuttiE|unisonoE|vlcE|xE|)(?![a-zA-Z])",
+          "name": "keyword.custom.editorial.lilypond"
+        },
+        {
+          "content": "LilyPond additional dynamics",
+          "match": "([-_^](\\s*))?\\\\(piuF|pocoF|pocoP)(?![a-zA-Z])",
+          "name": "entity.name.class.keyword.lilypond"
+        },
+        {
+          "content": "LilyPond additional dynamics (editorial)",
+          "match": "([-_^](\\s*))?\\\\(ffE|fE|mfE|mpE|pE|ppE|sfE|sfpE|sfzE|fpE|fzE|rfE|rfzE|piuFE|pocoFE|pocoPE|crescE|decrescE|trillE|tenutoE)(?![a-zA-Z])",
+          "name": "dynamics.editorial.lilypond"
+        }
+      ]
+    },
+		"lyricsmode": {
+			"patterns": [
+				{
+					"begin": "([-_^](\\s*))?(((\\\\lyrics\\s*)({))|((\\\\lyricmode\\s*)({))|((\\\\addlyrics\\s*)({))|((\\\\lyricsto\\s*(\\\".*\\\")\\s*)({))|(((\\\\lyricsto)\\s*(\\S*)\\s*)({)))",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"5": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"6": {
+							"name": "entity.other.lilypond"
+						},
+						"8": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"9": {
+							"name": "entity.other.lilypond"
+						},
+						"11": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"12": {
+							"name": "entity.other.lilypond"
+						},
+						"14": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"15": {
+							"name": "string.lilypond"
+						},
+						"16": {
+							"name": "entity.other.lilypond"
+						},
+						"19": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"21": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.lyricsmode",
+					"patterns": [
+						{
+							"include": "#lyricsmode-separator"
+						},
+						{
+							"include": "#lyricsmode-melisma"
+						},
+						{
+							"include": "#lyricsmode-elision"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				},
+				{
+					"begin": "({)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.lyricsmode.nested",
+					"patterns": [
+						{
+							"include": "#lyricsmode-separator"
+						},
+						{
+							"include": "#lyricsmode-melisma"
+						},
+						{
+							"include": "#lyricsmode-elision"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				}
+			]
+		},
+		"lyricsmode-elision": {
+			"patterns": [
+				{
+					"content": "Lyrics elision",
+					"match": "(?<=\\S)[~_](?=\\S)",
+					"name": "constant.language.elision.lilypond"
+				}
+			]
+		},
+		"lyricsmode-melisma": {
+			"patterns": [
+				{
+					"content": "Lyrics melisma",
+					"match": "(?<=\\s)(_)(?=\\s)",
+					"name": "storage.type.number.manualmelisma.lilypond"
+				}
+			]
+		},
+		"lyricsmode-separator": {
+			"patterns": [
+				{
+					"content": "Lyrics syllable separator",
+					"match": "\\s*--\\s*",
+					"name": "support.function.syllableseparator.lilypond"
+				}
+			]
+		},
+		"markupmode": {
+			"patterns": [
+				{
+					"begin": "([-_^](\\s*))?(((\\\\markup)(\\s+))|((\\\\markuplist)(\\s+)))",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"5": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"8": {
+							"name": "entity.name.class.keyword.lilypond"
+						}
+					},
+					"end": "(\\s+)",
+					"name": "meta.lilypond.markupmode.singleword",
+					"patterns": [
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				},
+				{
+					"begin": "([-_^](\\s*))?(((\\\\markup\\s*)({))|((\\\\markuplist\\s*)({)))",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"5": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"8": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"9": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.markupmode",
+					"patterns": [
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				},
+				{
+					"begin": "({)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond.markupmode.nested",
+					"patterns": [
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				}
+			]
+		},
+		"notedrum": {
+			"patterns": [
+				{
+					"content": "LilyPond chord",
+					"match": "<(?!<)|(?<!\\\\)>(?!>)(\\s*(128|64|32|16|8|4|2|1|\\\\breve|\\\\longa|\\\\maxima)(\\s*[.]\\s*)*((\\s*\\*\\s*\\d+(\\/\\d+)?)+)?)?",
+					"name": "keyword.operator.chord.lilypond"
+				},
+				{
+					"content": "LilyPond manual beam",
+					"match": "([_^-]\\s*)?\\[|\\]",
+					"name": "constant.numeric.beam.lilypond"
+				},
+				{
+					"content": "LilyPond polyphony delimiter",
+					"match": "<<|>>",
+					"name": "constant.language.polydelim.lilypond"
+				},
+				{
+					"content": "LilyPond polyphony separator",
+					"match": "\\\\\\\\",
+					"name": "constant.character.polysep.lilypond"
+				},
+				{
+					"content": "LilyPond articulation mark",
+					"match": "[-_^][-_^+|!>.]",
+					"name": "string.interpolated.articulation.lilypond"
+				},
+				{
+					"content": "LilyPond tie or slur",
+					"match": "([_^-]\\s*)?\\(|[_^-]?~|\\)",
+					"name": "support.function.tieslur.lilypond"
+				},
+				{
+					"content": "LilyPond phrasing slur",
+					"match": "([_^-]\\s*)?\\\\\\(|\\\\\\)",
+					"name": "support.constant.phraslur.lilypond"
+				},
+				{
+					"content": "LilyPond ligature",
+					"match": "([_^-]\\s*)?\\\\\\[|\\\\\\]",
+					"name": "support.constant.ligature.lilypond"
+				},
+				{
+					"content": "LilyPond bar line",
+					"match": "[|]",
+					"name": "support.type.barline.lilypond"
+				},
+				{
+					"content": "LilyPond hairpin",
+					"match": "\\\\[<!>]",
+					"name": "support.variable.hairpin.lilypond"
+				}
+			]
+		},
+		"notemode": {
+      "patterns": [
+        {
+          "include": "#notedrum"
+        },
+        {
+          "begin": "({)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.other.lilypond"
+            }
+          },
+          "end": "(})",
+          "endCaptures": {
+            "1": {
+              "name": "entity.other.lilypond"
+            }
+          },
+          "name": "meta.lilypond.notemode",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        },
+        {
+          "include": "#notenames"
+        },
+        {
+          "include": "#internals"
+        },
+        {
+          "include": "#drummode"
+        },
+        {
+          "include": "#lyricsmode"
+        },
+        {
+          "include": "#notemode-explicit"
+        },
+        {
+          "include": "#markupmode"
+        },
+        {
+          "include": "#figbassmode"
+        },
+        {
+          "include": "#schememode"
+        }
+      ]
+    },
+		"notemode-explicit": {
+			"patterns": [
+				{
+					"begin": "([-_^](\\s*))?(\\\\notemode)\\s*({)",
+					"beginCaptures": {
+						"1": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"3": {
+							"name": "entity.name.class.keyword.lilypond"
+						},
+						"4": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"end": "(})",
+					"endCaptures": {
+						"1": {
+							"name": "entity.other.lilypond"
+						}
+					},
+					"name": "meta.lilypond-notemode-explicit",
+					"patterns": [
+						{
+							"include": "$self"
+						},
+						{
+							"include": "#notenames"
+						},
+						{
+							"include": "#internals"
+						},
+						{
+							"include": "#notemode"
+						},
+						{
+							"include": "#lyricsmode"
+						},
+						{
+							"include": "#notemode-explicit"
+						},
+						{
+							"include": "#markupmode"
+						},
+						{
+							"include": "#figbassmode"
+						},
+						{
+							"include": "#schememode"
+						}
+					]
+				}
+			]
+		},
+    "notenames": {
+      "patterns": [
+        {
+          "content": "LilyPond notes and durations (German)",
+          "match": "\\b(aisih|aisis|ceseh|ceses|cisih|cisis|deseh|deses|disih|disis|eisih|eisis|feseh|feses|fisih|fisis|geseh|geses|gisih|gisis|heseh|heses|hisih|hisis|asah|asas|aseh|ases|eseh|eses|aeh|aih|ais|ceh|ces|cih|cis|deh|des|dih|dis|eeh|eih|eis|feh|fes|fih|fis|geh|ges|gih|gis|heh|hih|his|ah|as|eh|es|a|b|c|d|e|f|g|h|q|r|R|s)(,|')*(\\?|!)?((128|64|32|16|8|4|2|1|\\breve|\\longa|\\maxima)\\.*((\\*\\d+(\\/\\d+)?)+)?)?",
+          "captures": {
+            "1": {
+              "name": "keyword.note.name.lilypond"
+            },
+            "2": {
+              "name": "keyword.note.octave.lilypond"
+            },
+            "3": {
+              "name": "keyword.note.accidental.lilypond"
+            },
+            "4": {
+              "name": "keyword.note.duration.lilypond"
+            }
+          }
+        }
+    ]
+    },
+		"scheme": {
+			"patterns": [
+				{
+					"begin": "\\$(`|')?\\(",
+					"end": "\\)",
+					"name": "meta.lilypond.schememode",
+					"patterns": [
+						{
+							"include": "#scheme-scheme"
+						},
+						{
+							"include": "source.lisp"
+						}
+					]
+				},
+				{
+					"begin": "#(`|')?\\(",
+					"end": "\\)",
+					"name": "meta.lilypond.schememode",
+					"patterns": [
+						{
+							"include": "#scheme-scheme"
+						},
+						{
+							"include": "source.lisp"
+						}
+					]
+				},
+				{
+					"begin": "#",
+					"end": "\\s",
+					"name": "meta.lilypond.schememode",
+					"patterns": [
+						{
+							"include": "#scheme-scheme"
+						},
+						{
+							"include": "source.lisp"
+						}
+					]
+				}
+			]
+		},
+		"scheme-scheme": {
+			"patterns": [
+				{
+					"begin": "\\(",
+					"end": "\\)",
+					"name": "meta.scheme.scheme.lilypond",
+					"patterns": [
+						{
+							"include": "#scheme-scheme"
+						},
+						{
+							"include": "source.lisp"
+						}
+					]
+				}
+			]
+		}
+  },
+  "scopeName": "source.lilypond"
+}
