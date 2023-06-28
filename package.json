@@ -2,7 +2,12 @@
     "name": "lilypond-language",
     "displayName": "Lilypond Language",
     "description": "Syntax highlighting for GNU LilyPond",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "publisher": "skafdasschaf",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/skafdasschaf/vscode-lilypond-language.git"
+    },
     "engines": {
         "vscode": "^1.68.0"
     },
