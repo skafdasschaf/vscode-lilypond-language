@@ -256,7 +256,7 @@
 			"patterns": [
 				{
 					"content": "Macros used instead of figures",
-					"match": "\\\\(t|tllur|l)(?![a-zA-Z])",
+					"match": "\\\\(t|tllur|l|fivehat)(?![a-zA-Z])",
 					"name": "keyword.fbmacro.lilypond"
 				}
 			]
@@ -305,7 +305,7 @@
         },
         {
           "content": "LilyPond custom keywords",
-          "match": "([-_^](\\s*))?\\\\(setGroupDistance|setStaffDistance|smallGroupDistance|normalGroupDistance|smallStaffDistance|incipit|incipitSoprano|incipitAlto|incipitTenore|transposedName|transposedNameShort|transposedTimp|transposedTimpShort|insertEmptyPage|part|section|subsection|addTocEntry|addTocLabel|tacet|remark|arco|bassi|colOrg|conSord|dolce|org|pizz|senzaOrg|senzaSord|solo|tasto|tutti|unisono|vlc|critnote|mvTr|mvTrh|mvTrr|tempoMarkup|twofourtime|twotwotime|bp|extraNat|hairpinDashed|hairpinSolid|hideTn|kneeBeam|noKneeBeam|markDaCapo|mvDl|mvDll|parOn|parOff|sbOn|sbOff|scriptOut|x|pa|pao|pd|rh|lh|bo|bc|dynScript|dynScriptPrefix)(?![a-zA-Z])",
+          "match": "([-_^](\\s*))?\\\\(setGroupDistance|setStaffDistance|smallGroupDistance|normalGroupDistance|smallStaffDistance|incipit|incipitSoprano|incipitAlto|incipitTenore|transposedName|transposedNameShort|transposedTimp|transposedTimpShort|insertEmptyPage|part|section|subsection|addTocEntry|addTocLabel|tacet|remark|arco|bassi|colOrg|conSord|dolce|org|pizz|senzaOrg|senzaSord|solo|tasto|tutti|unisono|vlc|critnote|mvTr|mvTrh|mvTrr|tempoMarkup|twofourtime|twotwotime|bp|extraNat|hairpinDashed|hairpinSolid|hideTn|kneeBeam|noKneeBeam|markDaCapo|mvDl|mvDll|parOn|parOff|sbOn|sbOff|scriptOut|x|pa|pao|pd|rh|lh|bo|bc|dynScript|dynScriptPrefix|dynScriptSuffix)(?![a-zA-Z])",
           "name": "keyword.custom.lilypond"
         },
         {
@@ -315,12 +315,12 @@
         },
         {
           "content": "LilyPond additional dynamics",
-          "match": "([-_^](\\s*))?\\\\(piuF|pocoF|pocoP)(?![a-zA-Z])",
+          "match": "([-_^](\\s*))?\\\\(piuF|pocoF|pocoP|passai)(?![a-zA-Z])",
           "name": "entity.name.class.keyword.lilypond"
         },
         {
           "content": "LilyPond additional dynamics (editorial)",
-          "match": "([-_^](\\s*))?\\\\(ffE|fE|mfE|mpE|pE|ppE|sfE|sfpE|sfzE|fpE|fzE|rfE|rfzE|piuFE|pocoFE|pocoPE|crescE|decrescE|trillE|tenutoE)(?![a-zA-Z])",
+          "match": "([-_^](\\s*))?\\\\(ffE|fE|mfE|mpE|pE|ppE|sfE|sfpE|sfzE|fpE|fzE|rfE|rfzE|piuFE|pocoFE|pocoPE|passaiE|crescE|decrescE|trillE|tenutoE)(?![a-zA-Z])",
           "name": "dynamics.editorial.lilypond"
         }
       ]
