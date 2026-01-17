@@ -1,30 +1,44 @@
 {
-    "name": "lilypond-language",
-    "displayName": "Lilypond Language",
-    "description": "Syntax highlighting for GNU LilyPond",
-    "version": "1.0.0",
-    "publisher": "skafdasschaf",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/skafdasschaf/vscode-lilypond-language.git"
-    },
-    "engines": {
-        "vscode": "^1.68.0"
-    },
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [{
-            "id": "ly",
-            "aliases": ["LilyPond", "ly"],
-            "extensions": [".ly",".ily"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "ly",
-            "scopeName": "source.lilypond",
-            "path": "./syntaxes/ly.tmLanguage.json"
-        }]
-    }
+	"name": "lilypond-language",
+	"displayName": "Lilypond Language",
+	"description": "Syntax highlighting for GNU LilyPond",
+	"version": "1.0.0",
+	"publisher": "skafdasschaf",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/skafdasschaf/vscode-lilypond-language.git"
+	},
+	"engines": {
+		"vscode": "^1.68.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "ly",
+				"aliases": [
+					"LilyPond",
+					"ly"
+				],
+				"extensions": [
+					".ly",
+					".ily"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ly",
+				"scopeName": "source.lilypond",
+				"path": "./syntaxes/ly.tmLanguage.json"
+			}
+		]
+	},
+	"__metadata": {
+		"installedTimestamp": 1687979650709,
+		"size": 118478
+	}
 }
